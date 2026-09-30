@@ -1,0 +1,21 @@
+Qutex Math 0.2.0, maintained by BNZinc.
+
+This derivative consists of:
+  QutexMath-Regular.otf
+  QutexMath-Regular.woff2
+  README-Qutex-Math.md
+  MANIFEST-Qutex-Math.txt
+  build.json
+  build-requirements.txt
+  ../tools/build-font.py
+
+Font names: Qutex Math / QutexMath-Regular.
+Changes from Latin Modern Math 1.959: identity and provenance metadata; WOFF2
+packaging; RadicalVerticalGap 50 -> 250 and RadicalDisplayStyleVerticalGap
+148 -> 250 (1000 units/em). Outlines, advances, all other MATH data, kerning
+and Unicode coverage are unchanged. Numeric inline radical spacing was compared
+with an independent native Hancom output; whole-font equivalence is not claimed.
+
+License: GUST Font License / LPPL 1.3c or later, included under upstream/.
+Original work is preserved separately with its original names, archive, README,
+manifest and license. Source copyright notices remain in the derivative fonts.

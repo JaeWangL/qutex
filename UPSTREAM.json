@@ -1,0 +1,16 @@
+{
+  "name": "Temml",
+  "repository": "https://github.com/ronkok/Temml",
+  "commit": "9784bd5a7d615fb23fd3ae54dba1a0b0e376296c",
+  "version": "0.13.5",
+  "snapshotDate": "2026-09-30",
+  "directory": "vendor/temml",
+  "method": "Pinned source snapshot with explicit public-distribution exclusions",
+  "license": "MIT",
+  "modifications": "No retained source file edits. Qutex additions live outside vendor/temml.",
+  "excludedPaths": [
+    "dist/Temml.woff2",
+    "site/"
+  ],
+  "exclusionReason": "The upstream helper font includes a noncommercial FontCreator restriction. Qutex uses independently licensed QutexScript; upstream demo-site assets are not part of this public distribution."
+}

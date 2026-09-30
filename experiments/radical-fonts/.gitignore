@@ -1,0 +1,10 @@
+# Local generated evaluation evidence and candidate binaries are not release assets.
+*.png
+*.html
+*.json
+crops/
+*-crops/
+fonts/*.otf
+fonts/*.ttf
+fonts/*.woff2
+!fonts/SOURCES.json

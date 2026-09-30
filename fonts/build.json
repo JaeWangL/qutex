@@ -1,0 +1,92 @@
+{
+  "family": "Qutex Math",
+  "version": "0.2.0",
+  "status": "radical-clearance-profile",
+  "hancomSimilarityValidated": false,
+  "changes": [
+    "Font family and PostScript names",
+    "Derivative provenance metadata",
+    "Radical vertical gaps",
+    "WOFF2 packaging"
+  ],
+  "unchanged": [
+    "Outlines",
+    "Advances",
+    "Kerning",
+    "Other MATH constants",
+    "Stretchy variants",
+    "Unicode mapping"
+  ],
+  "mathProfile": {
+    "name": "radical-clearance-v1",
+    "changes": {
+      "RadicalVerticalGap": {
+        "before": 50,
+        "after": 250,
+        "unitsPerEm": 1000
+      },
+      "RadicalDisplayStyleVerticalGap": {
+        "before": 148,
+        "after": 250,
+        "unitsPerEm": 1000
+      }
+    },
+    "sourceTableSha256": "086d3c7839e3081ab9f2121e030eb1835fd2e6f397bbd90f7547e587b94dcfed",
+    "outputTableSha256": "e71b1dda997ab37fa4ee54bdf23b8cfa6950914dec7d11bc7b759f4a7ab37a70",
+    "referenceScope": "Inline numeric radicals in independent native Hancom PDF; display gap is consistency policy",
+    "investigation": "docs/radical-font-investigation.md"
+  },
+  "source": {
+    "name": "Latin Modern Math",
+    "version": "1.959",
+    "sha256": "6075562b771f8b82f0c179e363389684f2dd09de30038269e2628e504bd7be0f"
+  },
+  "toolchain": {
+    "fonttools": "4.61.1",
+    "brotli": "1.2.0"
+  },
+  "glyphCount": 4802,
+  "unicodeCodepoints": 2045,
+  "outlineSha256": "543bfdeeeeceb591cda52ba097af53f70e13db9008fb03eed3d3dd99cc4e86a6",
+  "preservedTableSha256": {
+    "cmap": "0fa653c022fd1c5663d25c59669d7ff79ba73e50bf8843a64f451ff1fe67ecac",
+    "hmtx": "1c17d0a71a0f6b0e4e9ba427c96947324ce2c7bbe8d0a62e0e844a768ef5ddea",
+    "hhea": "7ed35baac500731d5ab6c7d7a23ce596c351461786eb4b4be51cf9fac63bd4ed",
+    "OS/2": "a835fdc57874b0520a7da27b47bb20d52cbb58521895db706a38be1700488370",
+    "GDEF": "dfdad8e49a7817aca3dffb09d78a6800935f2d3e9dddd86fd056d6e13a44f7a0",
+    "GPOS": "6927bc015ff6e54f6c15a44e9c5b32d8a310d4efc0e764c2b347289bb388001d",
+    "GSUB": "ff2809069b42950cfa7a5bfc22c66f364388f5cef724f8bd165a09259d0131ba"
+  },
+  "assets": {
+    "QutexMath-Regular.otf": {
+      "sha256": "3d44a3e72e626f45c0c393136db8f80545b7e409e7506ac614f43a508b3b9add",
+      "bytes": 725172
+    },
+    "QutexMath-Regular.woff2": {
+      "sha256": "a50e4f6f713451b2812a3b4bfa12927c7baffeb4e44e81078a80407a1459a039",
+      "bytes": 388332
+    }
+  },
+  "koreanFallback": {
+    "family": "Noto Serif KR",
+    "defaultWeight": 200,
+    "regularWeight": 400,
+    "weightRange": [
+      200,
+      900
+    ],
+    "license": "SIL Open Font License 1.1",
+    "sourceSha256": "11f8d5de6f1b79195efba3828aaa2ec95c1178f5ae976fb23c8d53250a9938f3",
+    "changes": [
+      "Lossless WOFF2 packaging only"
+    ],
+    "subset": false,
+    "unicodeCodepoints": 23124,
+    "modernHangulSyllables": 11172,
+    "asset": {
+      "filename": "NotoSerifKR.woff2",
+      "sha256": "e873199ed8f2a76e32c7239e877c6d0e89ed06d0df73bc4d718e3ddd05c2fa00",
+      "bytes": 5859208
+    }
+  }
+}

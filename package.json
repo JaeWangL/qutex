@@ -1,0 +1,101 @@
+{
+  "name": "qutex",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Temml-based MathML and standalone SVG with an OpenType math font for educational publishing",
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.13"
+  },
+  "exports": {
+    ".": "./src/index.mjs",
+    "./browser": "./src/browser.mjs",
+    "./svg": "./src/svg.mjs",
+    "./font": "./src/font.mjs",
+    "./qutex.css": "./dist/qutex.css",
+    "./dist/*": "./dist/*"
+  },
+  "bin": {
+    "qutex": "./src/cli.mjs"
+  },
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "test": "node --test test/*.test.mjs",
+    "benchmark": "node tools/benchmark.mjs",
+    "specimen": "node tools/specimen.mjs",
+    "start": "node src/server.mjs",
+    "build:native": "cargo build --manifest-path crates/Cargo.toml --release",
+    "prepack": "npm run build"
+  },
+  "dependencies": {
+    "@mathjax/mathjax-modern-font": "4.1.3",
+    "@mathjax/src": "4.1.3",
+    "@napi-rs/canvas": "1.0.0",
+    "fontkit": "2.0.4",
+    "jsdom": "26.1.0",
+    "pdfjs-dist": "6.3.289",
+    "playwright-core": "1.56.1",
+    "svgcanvas": "2.6.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.25.12",
+    "saxes": "6.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JaeWangL/qutex.git"
+  },
+  "homepage": "https://github.com/JaeWangL/qutex#readme",
+  "bugs": {
+    "url": "https://github.com/JaeWangL/qutex/issues"
+  },
+  "keywords": [
+    "math",
+    "latex",
+    "mathml",
+    "svg",
+    "temml",
+    "equation",
+    "korean"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "jsdelivr": "dist/qutex.min.js",
+  "unpkg": "dist/qutex.min.js",
+  "style": "dist/qutex.css",
+  "main": "./src/index.mjs",
+  "files": [
+    "src/",
+    "dist/*.js",
+    "dist/*.mjs",
+    "dist/*.map",
+    "dist/*.txt",
+    "dist/*.css",
+    "dist/*.otf",
+    "dist/*.woff2",
+    "dist/manifest.json",
+    "dist/licenses/",
+    "fonts/*.otf",
+    "fonts/*.woff2",
+    "fonts/*.json",
+    "fonts/*.md",
+    "fonts/*.txt",
+    "fonts/upstream/latin-modern-math/",
+    "fonts/upstream/noto-serif-kr/OFL.txt",
+    "fonts/upstream/noto-serif-kr/SOURCE.json",
+    "fonts/upstream/katex-script/",
+    "vendor/temml/dist/temml.mjs",
+    "vendor/temml/LICENSE",
+    "vendor/temml/package.json",
+    "UPSTREAM.json",
+    "THIRD_PARTY_NOTICES.md",
+    "docs/",
+    "crates/Cargo.toml",
+    "crates/Cargo.lock",
+    "crates/qutex-font-outline/Cargo.toml",
+    "crates/qutex-font-outline/src/",
+    "fonts/upstream/noto-serif-kr/*.ttf"
+  ]
+}

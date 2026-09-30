@@ -1,0 +1,21 @@
+// Generic public mathematical notation; no user's document text is redistributed.
+export const corpus = [
+  ['분수·근호', String.raw`x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}`],
+  ['중첩 분수', String.raw`\cfrac{1}{1+\cfrac{1}{2+\cfrac{1}{3+x}}}`],
+  ['합과 첨자', String.raw`\sum_{k=1}^{n} k^2=\frac{n(n+1)(2n+1)}{6}`],
+  ['적분', String.raw`\int_0^\infty e^{-x^2}\,\mathrm{d}x=\frac{\sqrt{\pi}}{2}`],
+  ['극한', String.raw`\lim_{x\to0}\frac{\sin x}{x}=1`],
+  ['행렬', String.raw`\begin{pmatrix}a&b\\c&d\end{pmatrix}^{-1}=\frac1{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}`],
+  ['경우 나누기', String.raw`f(x)=\begin{cases}x^2&x<0\\\sqrt{x}&x\ge0\end{cases}`],
+  ['정렬·줄바꿈', String.raw`\begin{aligned}(a+b)^2&=a^2+2ab+b^2\\&=(a-b)^2+4ab\end{aligned}`],
+  ['강조·서체', String.raw`\mathbf{A}\boldsymbol{\alpha}+\mathbb{R}+\mathcal{F}+\mathscr{L}+\mathfrak{g}`],
+  ['한글·명시적 굵기', String.raw`\text{단, }x\ne0\quad\textbf{정답}\ ①`],
+  ['악센트', String.raw`\overrightarrow{AB}+\widehat{ABC}+\overline{z}+\underbrace{x+\cdots+x}_{n}`],
+  ['색상·테두리', String.raw`\color{blue}{\frac{x}{y}}+\boxed{z^2}`],
+  ['큰 괄호', String.raw`\left\langle\frac{\displaystyle\sum_{i=1}^n x_i}{\sqrt{1+x^2}}\right\rangle`],
+  ['수식 번호', String.raw`e^{i\pi}+1=0\tag{1}`],
+  ['화학', String.raw`\ce{2H2 + O2 -> 2H2O}`],
+  ['취소선', String.raw`\cancel{x}+\bcancel{y}+\xcancel{z}`],
+  ['배열 구분선', String.raw`\begin{array}{|c|c|}\hline a&b\\\hline c&d\\\hline\end{array}`],
+  ['배경 색상', String.raw`\colorbox{yellow}{$x+1$}`],
+];

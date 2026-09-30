@@ -1,0 +1,22 @@
+{
+  "repository": "https://github.com/KaTeX/KaTeX",
+  "commit": "dde05db6b775d8726a6654db13de26410195be48",
+  "url": "https://raw.githubusercontent.com/KaTeX/KaTeX/dde05db6b775d8726a6654db13de26410195be48/fonts/KaTeX_Script-Regular.ttf",
+  "license": "SIL Open Font License 1.1; Reserved Font Name KaTeX_Script",
+  "licenseEvidence": "Unmodified upstream font name table ID13, copied in FONT-NOTICE.txt",
+  "licenseTextUrl": "https://openfontlicense.org/documents/OFL.txt",
+  "files": {
+    "KaTeX_Script-Regular.ttf": {
+      "sha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+      "bytes": 16648
+    },
+    "FONT-NOTICE.txt": {
+      "sha256": "7a02a3a4c42581973ddc36f23b460e6541d308fb806d9522b2f03f46d3ded6b0",
+      "bytes": 309
+    },
+    "OFL.txt": {
+      "sha256": "904311aa38b77781525404030f095e083a1069c092bc66e99eec927819c9ae40",
+      "bytes": 4469
+    }
+  }
+}

@@ -1,0 +1,64 @@
+{
+  "family": "Qutex Script",
+  "version": "0.1.0",
+  "license": "SIL Open Font License 1.1",
+  "sourceSha256": "1c67f068fea8bb09bf099c088b1cf64bd27516a6e07f4684344873564bb66a67",
+  "sourceRepository": "https://github.com/KaTeX/KaTeX",
+  "sourceCommit": "dde05db6b775d8726a6654db13de26410195be48",
+  "fontOutlinesFromTemml": false,
+  "changes": [
+    "Renamed family/PostScript identity",
+    "Mapped A-Z script outlines to Unicode script capitals",
+    "WOFF2 packaging"
+  ],
+  "mapping": {
+    "U+210B": "H",
+    "U+2110": "I",
+    "U+2112": "L",
+    "U+211B": "R",
+    "U+212C": "B",
+    "U+2130": "E",
+    "U+2131": "F",
+    "U+2133": "M",
+    "U+1D49C": "A",
+    "U+1D49E": "C",
+    "U+1D49F": "D",
+    "U+1D4A2": "G",
+    "U+1D4A5": "J",
+    "U+1D4A6": "K",
+    "U+1D4A9": "N",
+    "U+1D4AA": "O",
+    "U+1D4AB": "P",
+    "U+1D4AC": "Q",
+    "U+1D4AE": "S",
+    "U+1D4AF": "T",
+    "U+1D4B0": "U",
+    "U+1D4B1": "V",
+    "U+1D4B2": "W",
+    "U+1D4B3": "X",
+    "U+1D4B4": "Y",
+    "U+1D4B5": "Z"
+  },
+  "primeFallback": {
+    "font": "Qutex Math",
+    "verifiedCodepoints": [
+      "U+2032",
+      "U+2033",
+      "U+2034",
+      "U+2035",
+      "U+2036",
+      "U+2037",
+      "U+2057"
+    ]
+  },
+  "toolchain": {
+    "fonttools": "4.61.1",
+    "brotli": "1.2.0",
+    "unicode": "16.0.0"
+  },
+  "asset": {
+    "filename": "QutexScript-Regular.woff2",
+    "bytes": 9860,
+    "sha256": "f6b366e3046d69d0970a1ac8314ea1291bb97f48a9dbba21a8e32ae3d5a59248"
+  }
+}

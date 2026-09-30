@@ -1,0 +1,27 @@
+{
+  "repository": "https://github.com/google/fonts",
+  "commit": "8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5",
+  "license": "SIL Open Font License 1.1",
+  "files": {
+    "NotoSerifKR[wght].ttf": {
+      "url": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoserifkr/NotoSerifKR%5Bwght%5D.ttf",
+      "sha256": "11f8d5de6f1b79195efba3828aaa2ec95c1178f5ae976fb23c8d53250a9938f3",
+      "bytes": 23795420
+    },
+    "OFL.txt": {
+      "url": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoserifkr/OFL.txt",
+      "sha256": "5e0da210fb04058a8c0087985d2d456b931c2579811a49655721d3cf0c36b6d6",
+      "bytes": 4350
+    },
+    "METADATA.pb": {
+      "url": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoserifkr/METADATA.pb",
+      "sha256": "11a2445e02b744e88e8ed6fd5b807da7df4628fcc6526a15ea9b111ba0458bf4",
+      "bytes": 873
+    },
+    "upstream_info.md": {
+      "url": "https://raw.githubusercontent.com/google/fonts/8b0a1d0f5983c89bc2b93f1b5fb55f9e252744b5/ofl/notoserifkr/upstream_info.md",
+      "sha256": "8527c223351631991d245d6bbfdd736f846f7514a9eed536c7f1ced6bf36650c",
+      "bytes": 877
+    }
+  }
+}

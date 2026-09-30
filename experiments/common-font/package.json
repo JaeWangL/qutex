@@ -1,0 +1,1 @@
+{"name":"qutex-common-font-experiment","private":true,"type":"module","dependencies":{"pdfjs-dist":"6.3.289","svgcanvas":"2.6.0","@napi-rs/canvas":"0.1.80","playwright-core":"1.56.1","jsdom":"26.1.0","pngjs":"7.0.0"}}

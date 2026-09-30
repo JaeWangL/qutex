@@ -1,0 +1,34 @@
+{
+  "name": "Latin Modern Math",
+  "version": "1.959",
+  "upstream": "https://www.gust.org.pl/projects/e-foundry/lm-math",
+  "archiveUrl": "https://www.gust.org.pl/projects/e-foundry/lm-math/download/latinmodern-math-1959.zip",
+  "license": "GUST Font License / LPPL 1.3c or later",
+  "downloadedUtcDate": "2026-09-30",
+  "files": {
+    "GUST-FONT-LICENSE.txt": {
+      "sha256": "2bd69affc3da00715116f713f57eab9707e96daf3562ad0215987b15b9c16f73",
+      "bytes": 1456
+    },
+    "LPPL-1.3c.txt": {
+      "sha256": "3d262cdf34dafa6955f703c634a8c238ec44109bc8dd6ef34fb7aa54809f7e66",
+      "bytes": 19102
+    },
+    "MANIFEST-Latin-Modern-Math.txt": {
+      "sha256": "1daa729f7922c42ba5ce8da7dfe4ecdc9e5c878ad86217fd6f32c4671505b007",
+      "bytes": 2186
+    },
+    "README-Latin-Modern-Math.txt": {
+      "sha256": "e6fdd5fb44b656146fa988d191f58901c09a347d3f4fbaa3b45b24a6ad7ec30b",
+      "bytes": 4588
+    },
+    "latinmodern-math-1959.zip": {
+      "sha256": "aaaa060b4ffc091461e875efb9498b9abfa7c7a48f38eb33882868839903a4f8",
+      "bytes": 576413
+    },
+    "latinmodern-math.otf": {
+      "sha256": "6075562b771f8b82f0c179e363389684f2dd09de30038269e2628e504bd7be0f",
+      "bytes": 733736
+    }
+  }
+}

@@ -1,0 +1,30 @@
+[
+  {
+    "repo": "google/fonts",
+    "commit": "76d97cb481958f9bb0976a453f8126f8e2ea87ab",
+    "url": "https://raw.githubusercontent.com/google/fonts/76d97cb481958f9bb0976a453f8126f8e2ea87ab/ofl/stixtwomath/STIXTwoMath-Regular.ttf",
+    "file": "STIXTwoMath-Regular.ttf",
+    "sha256": "562551b15b836e6e01d1b7350909baf3c8c8d83260c1190fbf4544333e6936de"
+  },
+  {
+    "repo": "google/fonts",
+    "commit": "76d97cb481958f9bb0976a453f8126f8e2ea87ab",
+    "url": "https://raw.githubusercontent.com/google/fonts/76d97cb481958f9bb0976a453f8126f8e2ea87ab/ofl/stixtwomath/OFL.txt",
+    "file": "STIX-OFL.txt",
+    "sha256": "0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a"
+  },
+  {
+    "repo": "aliftype/xits",
+    "commit": "2df3aefdd6ce6f336d3fa224094d9119051cd186",
+    "url": "https://raw.githubusercontent.com/aliftype/xits/2df3aefdd6ce6f336d3fa224094d9119051cd186/XITSMath-Regular.otf",
+    "file": "XITSMath-Regular.otf",
+    "sha256": "3025792adb0b7072ace08bf5726d341de32f2254612ddec6dd98271a8dd29689"
+  },
+  {
+    "repo": "aliftype/xits",
+    "commit": "2df3aefdd6ce6f336d3fa224094d9119051cd186",
+    "url": "https://raw.githubusercontent.com/aliftype/xits/2df3aefdd6ce6f336d3fa224094d9119051cd186/OFL.txt",
+    "file": "XITS-OFL.txt",
+    "sha256": "10c83acb7bf240c6e263906e0905c8e419f3483c89141e83243465c221d322ad"
+  }
+]
