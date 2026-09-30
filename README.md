@@ -9,8 +9,12 @@ so desktop publishing applications can place it without installing that font.
 
 ## Install
 
+The public release is available now. npm registry publication is pending the
+maintainer's account two-factor authentication. Until then, install the verified
+release tarball:
+
 ```sh
-npm install qutex
+npm install https://github.com/JaeWangL/qutex/releases/download/v0.2.0/qutex-0.2.0.tgz
 # Only required for the default server-side SVG renderer:
 npx playwright-core install chromium
 ```
@@ -48,20 +52,23 @@ but it does **not** use the edited Qutex font. [SVG contract](docs/svg.md)
 
 ## Browser and CDN
 
-Pinned jsDelivr URLs:
+The immutable GitHub-tagged jsDelivr distribution is live:
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/qutex@0.2.0/dist/qutex.css">
-<script src="https://cdn.jsdelivr.net/npm/qutex@0.2.0/dist/qutex.min.js"></script>
+<!doctype html>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/JaeWangL/qutex@cdn-v0.2.0/qutex.css">
+<script src="https://cdn.jsdelivr.net/gh/JaeWangL/qutex@cdn-v0.2.0/qutex.min.js"></script>
 <div id="formula"></div>
 <script>
   qutex.render('x^2+y^2=r^2', document.getElementById('formula'));
 </script>
 ```
 
-The ESM build is `dist/qutex.mjs`; the equivalent unpkg base is
-`https://unpkg.com/qutex@0.2.0/dist/`. Keep CSS and its relative font URLs together
-when self-hosting. `dist/manifest.json` records asset sizes and SHA-384 integrity.
+The ESM build is `qutex.mjs` on that CDN tag (`dist/qutex.mjs` in the package).
+Keep CSS and its relative font URLs together when self-hosting. `manifest.json`
+records asset sizes and SHA-384 integrity. After npm publication, the equivalent
+bases will be `https://cdn.jsdelivr.net/npm/qutex@0.2.0/dist/` and
+`https://unpkg.com/qutex@0.2.0/dist/`.
 
 With a bundler:
 
