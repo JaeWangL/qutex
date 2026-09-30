@@ -9,12 +9,14 @@ so desktop publishing applications can place it without installing that font.
 
 ## Install
 
+Qutex 0.2.1 fixes native browser-process shutdown without changing equation layout or font bytes. The browser CDN remains on 0.2.0 because this patch only changes server-side lifecycle handling.
+
 The public release is available now. npm registry publication is pending the
 maintainer's account two-factor authentication. Until then, install the verified
 release tarball:
 
 ```sh
-npm install https://github.com/JaeWangL/qutex/releases/download/v0.2.0/qutex-0.2.0.tgz
+npm install https://github.com/JaeWangL/qutex/releases/download/v0.2.1/qutex-0.2.1.tgz
 # Only required for the default server-side SVG renderer:
 npx playwright-core install chromium
 ```

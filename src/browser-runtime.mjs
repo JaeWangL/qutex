@@ -1,6 +1,7 @@
 import { access, readFile, mkdtemp, rm } from 'node:fs/promises';
 import { constants } from 'node:fs';
-import { spawn, spawnSync } from 'node:child_process';
+import { spawn } from 'node:child_process';
+import { trackOwnedProcess } from './owned-process.mjs';
 import { tmpdir } from 'node:os';
 import { createHash } from 'node:crypto';
 import { fileURLToPath } from 'node:url';
@@ -73,18 +74,16 @@ async function launchOwnedBrowser() {
     '--disable-sync', '--hide-scrollbars', '--force-color-profile=srgb', '--export-tagged-pdf',
     '--no-startup-window', ...(process.getuid?.() === 0 ? ['--no-sandbox'] : []),
   ], { detached: process.platform !== 'win32', windowsHide: true, stdio: ['ignore', 'ignore', 'pipe'] });
-  const owner = { child, pid: child.pid, browser: null, exited: false, closePromise: null };
+  const owner = { child, pid: child.pid, browser: null, closePromise: null };
   launching = owner;
   if (owner.pid) parentPort?.postMessage({ type: 'qutex-browser-process', pid: owner.pid });
   let endpointResolve, endpointReject, startupTimer, stderr = '';
   const endpoint = new Promise((resolve, reject) => { endpointResolve = resolve; endpointReject = reject; });
-  const exited = new Promise(resolve => child.once('close', () => {
-    owner.exited = true;
+  const processOwner = trackOwnedProcess(child, { onExit() {
     clearTimeout(startupTimer);
     endpointReject(new Error('Chromium exited before the renderer was ready'));
     if (owner.pid) parentPort?.postMessage({ type: 'qutex-browser-process-closed', pid: owner.pid });
-    resolve();
-  }));
+  } });
   child.once('error', error => endpointReject(new Error(`Could not start Chromium: ${error.message}`)));
   child.stderr.on('data', chunk => {
     // Keep the private DevTools endpoint in memory; never return/log stderr.
@@ -93,19 +92,6 @@ async function launchOwnedBrowser() {
     if (match) { clearTimeout(startupTimer); endpointResolve(match[1]); }
   });
   startupTimer = setTimeout(() => endpointReject(new Error('Chromium startup timed out')), 10000);
-  const waitForExit = ms => new Promise(resolve => {
-    const timer = setTimeout(() => resolve(false), ms);
-    exited.then(() => { clearTimeout(timer); resolve(true); });
-  });
-  function signal(signalName) {
-    if (owner.exited || !owner.pid) return;
-    if (process.platform === 'win32') {
-      spawnSync('taskkill', ['/pid', String(owner.pid), '/T', '/F'], { stdio: 'ignore' });
-    } else {
-      try { process.kill(-owner.pid, signalName); }
-      catch (error) { if (error.code !== 'ESRCH') throw error; }
-    }
-  }
   owner.close = () => owner.closePromise ??= (async () => {
     clearTimeout(startupTimer);
     endpointReject(new Error('Native renderer closed'));
@@ -113,11 +99,9 @@ async function launchOwnedBrowser() {
       // Browser.close() on a CDP-connected Playwright client may only detach;
       // the CDP command asks our actual Chromium process to exit.
       void owner.browser.newBrowserCDPSession().then(session => session.send('Browser.close')).catch(() => {});
-      await waitForExit(1000);
+      await processOwner.waitForExit(1000);
     }
-    if (!owner.exited) { signal('SIGTERM'); await waitForExit(1000); }
-    if (!owner.exited) signal('SIGKILL');
-    await exited;
+    await processOwner.stop();
     await rm(profile, { recursive: true, force: true });
     if (launching === owner) launching = undefined;
   })();

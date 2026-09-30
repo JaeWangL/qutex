@@ -1,6 +1,6 @@
 {
   "name": "qutex",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": false,
   "description": "Temml-based MathML and standalone SVG with an OpenType math font for educational publishing",
   "type": "module",

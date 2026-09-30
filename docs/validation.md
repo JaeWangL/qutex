@@ -146,3 +146,39 @@ permission to redistribute them. The reference HWP, metadata and preview are
 excluded from Git. No source-document content is included in the generic corpus.
 Precise Hancom glyph/stroke calibration and a shared edited-OTF SVG backend
 remain unimplemented; the repository and API explicitly state these limits.
+
+
+## 0.2.1 browser shutdown
+
+The native renderer now distinguishes the owned browser's `exit` event from the
+later stdio `close` event. An inherited stderr pipe no longer extends the
+lifetime of the saved process ID. The pool receives its unregister message at
+process exit. Group-signal `EPERM` or `ESRCH` falls back only through the live
+owned `ChildProcess` handle; other failures and failure to exit after `SIGKILL`
+remain errors. Signal waits and local pipe teardown are bounded.
+
+This follows the [Node child-process event contract](https://nodejs.org/api/child_process.html#event-close),
+which permits stdio to remain open after process exit. A local Darwin diagnostic
+also showed that a group containing only an exited, unreaped owned child can
+return `EPERM`, even though the positive PID is accessible. This explains a
+possible mechanism; the exact process state of the earlier production error was
+not captured.
+
+Validation for this patch:
+
+- `npm run build` completed. The existing upstream Temml export-condition warning
+  remains; the retained vendor source is unchanged.
+- `node --test test/owned-process.test.mjs test/pool-lifecycle.test.mjs test/render.test.mjs`
+  passed all 15 checks, including actual native Chromium shutdown, interrupted
+  startup, queue recovery, and existing SVG/HTTP contracts.
+- The new owned-process tests use a real child that exits while a bounded helper
+  retains stderr, plus controlled signal-error cases. They check that no signal
+  targets an exited child, a live owned handle is stopped after group denial,
+  spawn failure is handled, and failure to stop remains visible.
+- The ignored `artifacts/owned-process-lifecycle/compare-launcher.mjs` harness ran
+  the old and new launcher bodies with the same harmless real-process fixture
+  and an injected group `EPERM`: before, cleanup sent `SIGTERM` after `exit` and
+  failed; after, cleanup sent no late signal and completed. This does not claim
+  to reproduce the original browser process's uncaptured kernel state.
+
+No equation layout, font bytes, or renderer-quality settings changed.
