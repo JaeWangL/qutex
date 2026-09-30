@@ -25,7 +25,9 @@ jobs:
           "$QUTEX_CHROME_PATH" --version
       - run: npx playwright-core install-deps chromium
       - run: npm run build
-      - run: npm test
+      # Each native suite launches an owned browser. Avoid competing browser
+      # startups on a small runner; concurrency is still exercised within tests.
+      - run: node --test --test-concurrency=1 test/*.test.mjs
       - uses: actions/upload-artifact@v4
         with:
           name: qutex-cdn-${{ github.sha }}
