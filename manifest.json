@@ -1,0 +1,41 @@
+{
+  "version": "0.2.0",
+  "files": {
+    "NotoSerifKR.woff2": {
+      "bytes": 5859208,
+      "integrity": "sha384-dngKRHrnnE34WJHRrHlbYIcOK50kruiZr17KE2V87bRWv6lxrFJ9jLwt7j+FEIae"
+    },
+    "QutexMath-Regular.otf": {
+      "bytes": 725172,
+      "integrity": "sha384-FCBqAX8CIqc7I65OZHS1XBuefTGbv16a9Uwzh6XrwRe3PFWQVzK1xstKAzCFuSeY"
+    },
+    "QutexMath-Regular.woff2": {
+      "bytes": 388332,
+      "integrity": "sha384-m42v1u/gnwtjJ/KyTTHnFJxXzd0SeU4zN5Co1lY8L+qhOmVZj7Qi/5mzpOKRSZlx"
+    },
+    "QutexScript-Regular.woff2": {
+      "bytes": 9860,
+      "integrity": "sha384-UiavklIcymcTgqIxXfIxkJyJDQQlQ+NjHtOn95/001852hnwcHb27doBokhOX0qy"
+    },
+    "THIRD_PARTY_NOTICES.txt": {
+      "bytes": 1983,
+      "integrity": "sha384-dB9cWgOorMXdm3D6G/gSmh4rtv94i2Ow65M8uRCIqXZGhoiSgx2fAOhRIwK1cvWl"
+    },
+    "qutex.css": {
+      "bytes": 9729,
+      "integrity": "sha384-DQ/d+p79f2JsQRHB+kgYEgTk0sMj6WQsrGEz2YhS+R4LbVgz9MD3CqGlm12dedUc"
+    },
+    "qutex.min.js": {
+      "bytes": 214878,
+      "integrity": "sha384-7APPgyfZZEwFfR/pxOEAhdcgfYQPJtrZhaz2D/yUDX0glXjPWluL0PiPL1/bnXhY"
+    },
+    "qutex.mjs": {
+      "bytes": 214435,
+      "integrity": "sha384-//N4wSekM5zz/314P0OjvwfaPTX17Na+TldPySWz5M9sNbjJ+6dQY7q5Ntn/cIQI"
+    },
+    "qutex.mjs.map": {
+      "bytes": 785337,
+      "integrity": "sha384-c1pQoDH9fvoruqmIttEVRZ+zJMUHEhIGCCLmu+wc1QLInLHhuHt15YDmVHCszSFE"
+    }
+  }
+}

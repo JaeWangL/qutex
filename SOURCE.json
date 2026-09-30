@@ -1,0 +1,10 @@
+{
+  "name": "Qutex browser assets",
+  "version": "0.2.0",
+  "sourceRepository": "https://github.com/JaeWangL/qutex",
+  "sourceCommit": "afc1f2a8ade4633bb026356f5390bd27db4b9fa4",
+  "sourceUrl": "https://github.com/JaeWangL/qutex/tree/afc1f2a8ade4633bb026356f5390bd27db4b9fa4",
+  "buildCommand": "npm ci --ignore-scripts && npm run build",
+  "license": "MIT for Qutex code; fonts retain their separate licenses",
+  "distribution": "Generated root dist files and licenses only; no local reports or private source documents"
+}
