@@ -9,6 +9,10 @@ permissions:
 jobs:
   javascript:
     runs-on: ubuntu-latest
+    env:
+      # Ubuntu 24.04 permits this installed browser through its AppArmor profile.
+      # Keep Chromium's sandbox enabled instead of weakening the runner policy.
+      QUTEX_CHROME_PATH: /usr/bin/google-chrome
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -16,7 +20,10 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci --ignore-scripts
-      - run: npx playwright-core install --with-deps chromium
+      - run: |
+          test -x "$QUTEX_CHROME_PATH"
+          "$QUTEX_CHROME_PATH" --version
+      - run: npx playwright-core install-deps chromium
       - run: npm run build
       - run: npm test
       - uses: actions/upload-artifact@v4
