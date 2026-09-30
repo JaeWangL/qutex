@@ -1,6 +1,6 @@
 import temml from '../vendor/temml/dist/temml.mjs';
 
-export const version = '0.2.0';
+export const version = '0.2.1';
 export const upstreamVersion = '0.13.5';
 export const MAX_TEX_LENGTH = 16384;
 
