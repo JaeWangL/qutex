@@ -21,6 +21,11 @@ css += '\n.mathscr {font-family: "Qutex Script", "Qutex Math", math;}\n';
 css = css.replace(/font-family:\s*Temml\s*;/g, 'font-family: "Qutex Math";');
 css += '\n.special-fraction {font-family: "Qutex Math", "Qutex Korean", math;}\n';
 await writeFile(resolve(dist, 'qutex.css'), css);
+// Lite: the same Qutex Math/Script faces without the 5.9 MB Noto Serif KR face.
+// Text inside math (Korean, etc.) uses installed fonts; nothing else changes.
+const lite = css.replace(/\n@font-face \{ font-family: "Qutex Korean";[^\n]*\n/, '\n').replaceAll(', "Qutex Korean"', '');
+if (lite.includes('Qutex Korean') || lite.includes('NotoSerifKR')) throw new Error('qutex-lite.css still references the Korean web font');
+await writeFile(resolve(dist, 'qutex-lite.css'), lite);
 for (const name of ['QutexMath-Regular.otf', 'QutexMath-Regular.woff2', 'QutexScript-Regular.woff2', 'NotoSerifKR.woff2']) {
   await copyFile(resolve(root, 'fonts', name), resolve(dist, name));
 }
