@@ -9,21 +9,61 @@ so desktop publishing applications can place it without installing that font.
 
 ## Install
 
-Qutex 0.2.1 fixes native browser-process shutdown without changing equation layout or font bytes. The browser CDN remains on 0.2.0 because this patch only changes server-side lifecycle handling.
-
-The public release is available now. npm registry publication is pending the
-maintainer's account two-factor authentication. Until then, install the verified
-release tarball:
-
 ```sh
-npm install https://github.com/JaeWangL/qutex/releases/download/v0.2.1/qutex-0.2.1.tgz
-# Only required for the default server-side SVG renderer:
-npx playwright-core install chromium
+npm install qutex
 ```
 
-Node.js 22.13+ is required. An existing Chrome/Chromium is detected automatically;
-set `QUTEX_CHROME_PATH` if needed. MathML SSR and browser rendering do not need a
-server-side browser. No browser is downloaded by the package's install scripts.
+Node.js 22.13+ is required. MathML rendering (Node or browser) has no runtime
+dependencies. Server-side SVG uses optional peer dependencies, installed only
+when you need them:
+
+```sh
+# Default native SVG (an installed Chrome/Chromium is detected; or set QUTEX_CHROME_PATH)
+npm install fontkit playwright-core @napi-rs/canvas jsdom pdfjs-dist svgcanvas
+# backend: 'mathjax'
+npm install fontkit @mathjax/src @mathjax/mathjax-modern-font
+```
+
+Tested peer versions are pinned in `devDependencies`. No browser is downloaded
+by the package's install scripts (`npx playwright-core install chromium` if you
+have none). Each GitHub release also attaches the npm-format tarball.
+
+## Country notation (`locale`)
+
+School mathematics is written differently by country. Every render function
+takes `locale` (default `"ko"`), applied as Temml macros before your own
+`macros`, which can still override any rule:
+
+| Input | `ko` (default) | `ja` | `tex` (upstream Temml) |
+| --- | --- | --- | --- |
+| `\binom{n}{k}`, `\dbinom`, `\tbinom` | ₙCₖ (left subscript, upright C) | ₙCₖ | (n k) stacked in parentheses |
+| `\geq` `\ge` `≥` | ≥ | ≧ | ≥ |
+| `\geqq` `≧` | ≥ | ≧ | ≧ |
+| `\geqslant` `⩾` | ≥ | ≧ | ⩾ |
+| `\leq` `\le` `≤` / `\leqq` `≦` / `\leqslant` `⩽` | ≤ | ≦ | ≤ / ≦ / ⩽ (unchanged) |
+
+```js
+import { renderToString } from 'qutex';
+
+renderToString(String.raw`\binom{5}{2}`);                    // ₅C₂ (ko)
+renderToString(String.raw`a\geq b`, { locale: 'ja' });       // a ≧ b
+renderToString(String.raw`\binom{5}{2}`, { locale: 'tex' }); // (5 2)
+renderToString(String.raw`\binom{n}{k}`, { locale: 'ko-KR' }); // BCP 47 tags resolve by language
+```
+
+- ₙCₖ is rendered as `{}_{n}\mathrm{C}_{k}`. A power is written as in
+  textbooks: `\binom{n}{k}^2` → (ₙCₖ)².
+- Symbol rules also apply to Unicode input and inside `\text{}`.
+- A parenthesised binomial is still available as `\genfrac(){0pt}{}{n}{k}` or
+  with `locale: 'tex'`. Infix `{n \choose k}` is handled inside Temml's parser
+  and is not remapped.
+- Unsupported locales throw a `RangeError`; `locales` lists the supported names,
+  `resolveLocale()` normalizes a tag and `localeMacros()` returns a locale's rules.
+- A new locale is one entry in `src/locales.mjs` plus tests.
+
+`annotate: true` keeps the original TeX source in the MathML annotation. The
+`maxExpand` (≤ 1000) and `maxSize` (≤ [100, 1000] em) options can only tighten
+Qutex's limits.
 
 ## Node.js
 
@@ -68,17 +108,27 @@ The immutable GitHub-tagged jsDelivr distribution is live:
 
 The ESM build is `qutex.mjs` on that CDN tag (`dist/qutex.mjs` in the package).
 Keep CSS and its relative font URLs together when self-hosting. `manifest.json`
-records asset sizes and SHA-384 integrity. After npm publication, the equivalent
-bases will be `https://cdn.jsdelivr.net/npm/qutex@0.2.0/dist/` and
-`https://unpkg.com/qutex@0.2.0/dist/`.
+records asset sizes and SHA-384 integrity. The npm
+bases are `https://cdn.jsdelivr.net/npm/qutex@<version>/dist/` and
+`https://unpkg.com/qutex@<version>/dist/`.
 
-With a bundler:
+With a bundler (`qutex` resolves to the browser entry under the `browser`
+condition; `qutex/browser` is explicit):
 
 ```js
-import { render } from 'qutex/browser';
+import { render, renderToString } from 'qutex/browser';
 import 'qutex/qutex.css';
-render(String.raw`\sqrt{x}`, document.getElementById('formula'));
+render(String.raw`\sqrt{x}`, document.getElementById('formula'), { locale: 'ko' });
 ```
+
+`qutex.css` includes Noto Serif KR (5.9 MB) for Korean text inside formulas.
+`qutex/qutex-lite.css` is identical except that this face is omitted, so text
+inside math uses installed fonts and the only web fonts are Qutex Math (388 KB)
+and Qutex Script (10 KB). Browsers fetch a face only when a formula needs it.
+TypeScript declarations are included.
+
+For Markdown, [markdown-it-qutex](https://github.com/JaeWangL/markdown-it-qutex)
+renders `$…$` and `$$…$$` with Qutex and passes `locale` through.
 
 ## CLI and local HTTP API
 
@@ -86,6 +136,9 @@ render(String.raw`\sqrt{x}`, document.getElementById('formula'));
 printf '%s' '\sqrt{x}' | npx qutex mathml
 printf '%s' '\sqrt{x}' | npx qutex svg equation.svg
 ```
+
+JSON input carries options, including `locale`:
+`printf '%s' '{"latex":"\\binom{5}{2}","options":{"locale":"ja"}}' | npx qutex mathml`.
 
 From a source checkout, `npm start` serves `127.0.0.1:8774`.
 `POST /v1/render` accepts

@@ -1,19 +1,34 @@
 {
   "name": "qutex",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "private": false,
-  "description": "Temml-based MathML and standalone SVG with an OpenType math font for educational publishing",
+  "description": "Temml-based MathML and standalone SVG with an OpenType math font and country-specific school notation (ko, ja)",
   "type": "module",
   "license": "MIT",
   "engines": {
     "node": ">=22.13"
   },
   "exports": {
-    ".": "./src/index.mjs",
-    "./browser": "./src/browser.mjs",
-    "./svg": "./src/svg.mjs",
-    "./font": "./src/font.mjs",
+    ".": {
+      "types": "./types/index.d.ts",
+      "browser": "./src/browser.mjs",
+      "default": "./src/index.mjs"
+    },
+    "./browser": {
+      "types": "./types/browser.d.ts",
+      "default": "./src/browser.mjs"
+    },
+    "./svg": {
+      "types": "./types/svg.d.ts",
+      "default": "./src/svg.mjs"
+    },
+    "./font": {
+      "types": "./types/font.d.ts",
+      "default": "./src/font.mjs"
+    },
     "./qutex.css": "./dist/qutex.css",
+    "./qutex-lite.css": "./dist/qutex-lite.css",
+    "./package.json": "./package.json",
     "./dist/*": "./dist/*"
   },
   "bin": {
@@ -28,7 +43,43 @@
     "build:native": "cargo build --manifest-path crates/Cargo.toml --release",
     "prepack": "npm run build"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "@mathjax/mathjax-modern-font": "^4.1.3",
+    "@mathjax/src": "^4.1.3",
+    "@napi-rs/canvas": "^1.0.0",
+    "fontkit": "^2.0.4",
+    "jsdom": "^26.1.0",
+    "pdfjs-dist": "^6.3.289",
+    "playwright-core": "^1.56.1",
+    "svgcanvas": "^2.6.0"
+  },
+  "peerDependenciesMeta": {
+    "@mathjax/mathjax-modern-font": {
+      "optional": true
+    },
+    "@mathjax/src": {
+      "optional": true
+    },
+    "@napi-rs/canvas": {
+      "optional": true
+    },
+    "fontkit": {
+      "optional": true
+    },
+    "jsdom": {
+      "optional": true
+    },
+    "pdfjs-dist": {
+      "optional": true
+    },
+    "playwright-core": {
+      "optional": true
+    },
+    "svgcanvas": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
     "@mathjax/mathjax-modern-font": "4.1.3",
     "@mathjax/src": "4.1.3",
     "@napi-rs/canvas": "1.0.0",
@@ -36,9 +87,7 @@
     "jsdom": "26.1.0",
     "pdfjs-dist": "6.3.289",
     "playwright-core": "1.56.1",
-    "svgcanvas": "2.6.0"
-  },
-  "devDependencies": {
+    "svgcanvas": "2.6.0",
     "esbuild": "0.25.12",
     "saxes": "6.0.0"
   },
@@ -57,7 +106,9 @@
     "svg",
     "temml",
     "equation",
-    "korean"
+    "korean",
+    "locale",
+    "japanese"
   ],
   "publishConfig": {
     "access": "public"
@@ -66,8 +117,10 @@
   "unpkg": "dist/qutex.min.js",
   "style": "dist/qutex.css",
   "main": "./src/index.mjs",
+  "types": "./types/index.d.ts",
   "files": [
     "src/",
+    "types/",
     "dist/*.js",
     "dist/*.mjs",
     "dist/*.map",

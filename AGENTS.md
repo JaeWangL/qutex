@@ -19,3 +19,6 @@ must be optional and measured against the JavaScript fallback.
 Use npm run build and the focused Qutex contract tests after relevant edits.
 Do not run the imported upstream test suite automatically or modify its goldens.
 Document limitations and measurements; do not mistake a build for visual proof.
+
+Country notation lives in src/locales.mjs as Temml macro tables (default ko).
+Add a locale as one table entry with tests for every rule; keep tex unchanged.

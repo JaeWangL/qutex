@@ -1,8 +1,11 @@
 import temml from '../vendor/temml/dist/temml.mjs';
+import { localeMacros, resolveLocale } from './locales.mjs';
 
-export const version = '0.2.1';
+export const version = '0.3.0';
 export const upstreamVersion = '0.13.5';
 export const MAX_TEX_LENGTH = 16384;
+const MAX_EXPAND = 1000;
+const MAX_SIZE = Object.freeze([100, 1000]);
 
 export function optionsFor(latex, options = {}) {
   if (typeof latex !== 'string') throw new TypeError('latex must be a string');
@@ -17,14 +20,29 @@ export function optionsFor(latex, options = {}) {
   if (options.macros !== undefined && (!options.macros || typeof options.macros !== 'object' || Array.isArray(options.macros))) {
     throw new TypeError('macros must be an object');
   }
-  const macros = {};
+  // Callers may only tighten the expansion and size ceilings.
+  const maxExpand = options.maxExpand ?? MAX_EXPAND;
+  if (!Number.isInteger(maxExpand) || maxExpand < 1 || maxExpand > MAX_EXPAND) {
+    throw new RangeError(`maxExpand must be an integer from 1 to ${MAX_EXPAND}`);
+  }
+  const maxSize = options.maxSize ?? MAX_SIZE;
+  if (!Array.isArray(maxSize) || maxSize.length !== 2
+    || maxSize.some((value, index) => typeof value !== 'number' || !(value > 0) || value > MAX_SIZE[index])) {
+    throw new RangeError(`maxSize must be two positive limits up to [${MAX_SIZE.join(', ')}]`);
+  }
+  // Country notation first; the caller's own macros may still override it.
+  const macros = localeMacros(resolveLocale(options.locale));
+  const userMacros = {};
   for (const [name, value] of Object.entries(options.macros ?? {})) {
     if (typeof value !== 'string' || name.length > 128 || value.length > 4096) {
       throw new TypeError('macros must contain bounded string expansions');
     }
+    Object.defineProperty(userMacros, name, { value, enumerable: true, writable: true, configurable: true });
+  }
+  if (Object.keys(userMacros).length > 128) throw new RangeError('Too many macros');
+  for (const [name, value] of Object.entries(userMacros)) {
     Object.defineProperty(macros, name, { value, enumerable: true, writable: true, configurable: true });
   }
-  if (Object.keys(macros).length > 128) throw new RangeError('Too many macros');
   return {
     displayMode: options.displayMode ?? false,
     annotate: options.annotate ?? false,
@@ -34,8 +52,8 @@ export function optionsFor(latex, options = {}) {
     macros,
     throwOnError: true,
     trust: false,
-    maxExpand: 1000,
-    maxSize: [100, 1000],
+    maxExpand,
+    maxSize: [...maxSize],
   };
 }
 
@@ -56,3 +74,4 @@ export function render(latex, element, options = {}) {
 
 // Full upstream API remains available for advanced trusted, application-local use.
 export { temml };
+export { DEFAULT_LOCALE, locales, resolveLocale, localeMacros, describeLocale } from './locales.mjs';
