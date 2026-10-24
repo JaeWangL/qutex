@@ -15,8 +15,8 @@ test('version, exports and types agree', async () => {
     assert.ok(existsSync(new URL(`../${target}`, import.meta.url)), `${target} exists (run npm run build first)`);
   }
   // Self-reference resolves the published entry points.
-  const browser = await import('qutex/browser');
-  const node = await import('qutex');
+  const browser = await import('@jaewangl/qutex/browser');
+  const node = await import('@jaewangl/qutex');
   assert.equal(browser.renderToString(String.raw`\binom{5}{2}`), node.renderToString(String.raw`\binom{5}{2}`));
   for (const name of ['renderToString', 'render', 'resolveLocale', 'localeMacros', 'describeLocale', 'locales', 'DEFAULT_LOCALE']) {
     assert.ok(name in browser, `browser exports ${name}`);

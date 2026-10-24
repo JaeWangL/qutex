@@ -1,5 +1,5 @@
 {
-  "name": "qutex",
+  "name": "@jaewangl/qutex",
   "version": "0.3.0",
   "private": false,
   "description": "Temml-based MathML and standalone SVG with an OpenType math font and country-specific school notation (ko, ja)",

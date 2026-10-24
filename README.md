@@ -10,7 +10,7 @@ so desktop publishing applications can place it without installing that font.
 ## Install
 
 ```sh
-npm install qutex
+npm install @jaewangl/qutex
 ```
 
 Node.js 22.13+ is required. MathML rendering (Node or browser) has no runtime
@@ -43,7 +43,7 @@ takes `locale` (default `"ko"`), applied as Temml macros before your own
 | `\leq` `\le` `≤` / `\leqq` `≦` / `\leqslant` `⩽` | ≤ | ≦ | ≤ / ≦ / ⩽ (unchanged) |
 
 ```js
-import { renderToString } from 'qutex';
+import { renderToString } from '@jaewangl/qutex';
 
 renderToString(String.raw`\binom{5}{2}`);                    // ₅C₂ (ko)
 renderToString(String.raw`a\geq b`, { locale: 'ja' });       // a ≧ b
@@ -68,7 +68,7 @@ Qutex's limits.
 ## Node.js
 
 ```js
-import { renderToString, renderToSVG, closeRenderer } from 'qutex';
+import { renderToString, renderToSVG, closeRenderer } from '@jaewangl/qutex';
 
 const latex = String.raw`x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}`;
 const mathml = renderToString(latex, { displayMode: true });
@@ -109,20 +109,20 @@ The immutable GitHub-tagged jsDelivr distribution is live:
 The ESM build is `qutex.mjs` on that CDN tag (`dist/qutex.mjs` in the package).
 Keep CSS and its relative font URLs together when self-hosting. `manifest.json`
 records asset sizes and SHA-384 integrity. The npm
-bases are `https://cdn.jsdelivr.net/npm/qutex@<version>/dist/` and
-`https://unpkg.com/qutex@<version>/dist/`.
+bases are `https://cdn.jsdelivr.net/npm/@jaewangl/qutex@<version>/dist/` and
+`https://unpkg.com/@jaewangl/qutex@<version>/dist/`.
 
-With a bundler (`qutex` resolves to the browser entry under the `browser`
-condition; `qutex/browser` is explicit):
+With a bundler (`@jaewangl/qutex` resolves to the browser entry under the `browser`
+condition; `@jaewangl/qutex/browser` is explicit):
 
 ```js
-import { render, renderToString } from 'qutex/browser';
-import 'qutex/qutex.css';
+import { render, renderToString } from '@jaewangl/qutex/browser';
+import '@jaewangl/qutex/qutex.css';
 render(String.raw`\sqrt{x}`, document.getElementById('formula'), { locale: 'ko' });
 ```
 
 `qutex.css` includes Noto Serif KR (5.9 MB) for Korean text inside formulas.
-`qutex/qutex-lite.css` is identical except that this face is omitted, so text
+`@jaewangl/qutex/qutex-lite.css` is identical except that this face is omitted, so text
 inside math uses installed fonts and the only web fonts are Qutex Math (388 KB)
 and Qutex Script (10 KB). Browsers fetch a face only when a formula needs it.
 TypeScript declarations are included.
